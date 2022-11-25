@@ -1,0 +1,39 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <div class="card">
+                <div class="card-body text-center">
+                    <span class="titulo">LISTADO DE EMPLEADOS</span>
+                    <button class="letra btn btn-success float-end" routerLink="/registrar-empleado">NUEVO</button>
+                    <table *ngIf="listEmpleados.length > 0" class="table table-striped mt-4">
+                        <thead>
+                          <tr>
+                            <th class="letra" scope="col">Correo</th>
+                            <th class="letra" scope="col">Nombre</th>
+                            <th class="letra" scope="col">Apellido</th>
+                            <th class="letra" scope="col">C.I</th>
+                            <th class="letra" scope="col">Cargo</th>
+                            <th class="letra" scope="col">Salario</th>
+                            <th class="letra" scope="col">Accion</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let empleado of listEmpleados">
+                            <td>{{ empleado.correo }} </td>
+                            <td>{{ empleado.nombre }} </td>
+                            <td>{{ empleado.apellido }}</td>
+                            <td>{{ empleado.ci }}</td>
+                            <td>{{ empleado.cargo }}</td>
+                            <td>${{ empleado.salario }}</td>
+                            <td> <i [routerLink]="['/editar-empleado', empleado._id]" class="fa-solid fa-pen-to-square text-primary"></i>
+                                 <i (click)="eliminarEmpleado(empleado._id)" class="fa-solid fa-trash text-danger"></i>
+                           </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <h5 style="text-align: start; margin-top: 10px;" *ngIf="listEmpleados.length == 0">No hay empleados registrados</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
